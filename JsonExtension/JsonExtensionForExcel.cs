@@ -5,4 +5,9 @@
         int resultListCount = 0;
         return new RowData[resultListCount];
     }
+    
+    public static string ToJson(ICollection<RowData> data)
+    {
+        return "";
+    }
 }
