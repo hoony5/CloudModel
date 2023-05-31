@@ -29,59 +29,64 @@
        - for business
 
 - Model
-    1. ClientDataModel -> AES
-       1. RowData -> string (json)
-          * FirstColumnValue -> string
-          * Headers -> List:string
-          * Values -> List:string
-       2. Message -> class
-          * tick -> long
-          * log -> string
-          * success -> bool
+    1. ~~ClientDataModel -> AES~~
+       1. ~~RowData -> string (json)~~
+          * ~~FirstColumnValue -> string~~
+          * ~~Headers -> List:string~~
+          * ~~Values -> List:string~~
+       2. ~~Message -> class~~
+          * ~~tick -> long~~
+          * ~~log -> string~~
+          * ~~success -> bool~~
           
-    2. CloudDataModel -> AES
-       1. RowData -> string (json)
-          * FirstColumnValue -> string
-          * Headers -> List:string
-          * Values -> List:string
-       2. Message -> class
-           * tick -> long
-           * log -> string
-           * success -> bool
-       3. ID -> class
-           * projectID -> string
-           * playerID -> string
-           * accessToken -> string
-           * 
+    2. ~~CloudDataModel -> AES~~
+       1. ~~RowData -> string (json)~~
+          * ~~FirstColumnValue -> string~~
+          * ~~Headers -> List:string~~
+          * ~~Values -> List:string~~
+       2. ~~Message -> class~~
+           * ~~tick -> long~~
+           * ~~log -> string~~
+           * ~~success -> bool~~
+       3. ~~ID -> class~~
+           * ~~projectID -> string~~
+           * ~~playerID -> string~~
+           * ~~accessToken -> string~~
+          
     3. CommandBatching Model
        1. Battle
           * List<Command> : class
           * CallProcessBatchEndpoint -> params : string[]
-    4. AlarmData -> AES
-       1. ID -> class
-          * projectID -> string
-          * playerID -> string
-          * accessToken -> string
-       2. Message -> class
-          * tick -> long
-          * log -> string
-          * success -> bool
-       
-    5. Tags
-       1. Save & Load
-          * Player Item, Abilities, Pets, etc.
-          * Player Progress
-          * Player Achievements
-          * Player Settings & Normal Data
-          * Player Social Info (Friends, Mail, Clan etc.)
-          * Player Virtual Currency & Premium Inventory
-       2. Send Something
-          * Messages or Chat
-          * Feedbacks
-       3. Battle
-          * Request Batching Commands
-          * Request Reward
-          * Request Validation
+    4. ~~AlarmData -> AES~~
+       1. ~~ID -> class~~
+          * ~~projectID -> string~~
+          * ~~playerID -> string~~
+          * ~~accessToken -> string~~
+       2. ~~Message -> class~~
+          * ~~tick -> long~~
+          * ~~log -> string~~
+          * ~~success -> bool~~
+    5. ~~SecurityInfo -> struct~~
+          * ~~hmac -> byte[]~~
+          * ~~iv -> byte[]~~
+          * ~~key -> byte[]~~
+          * ~~encryptedData -> byte[]~~
+
+    6. ~~Tags~~
+        1. ~~Save & Load~~
+           * ~~Player Item, Abilities, Pets, etc.~~
+           * ~~Player Progress~~
+           * ~~Player Achievements~~
+           * ~~Player Settings & Normal Data~~
+           * ~~Player Social Info (Friends, Mail, Clan etc.)~~
+           * ~~Player Virtual Currency & Premium Inventory~~
+        2. ~~Send Something~~
+           * ~~Messages or Chat~~
+           * ~~Feedbacks~~
+        3. ~~Battle~~
+           * ~~Request Batching Commands~~
+           * ~~Request Reward~~
+           * ~~Request Validation~~
       
 - Model Container
     1. Units

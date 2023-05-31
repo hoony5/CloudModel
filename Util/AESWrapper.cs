@@ -1,11 +1,11 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using CloudModel.DataModel;
 using CloudModel.DataModel.Raw;
 
 namespace CloudModel.Util;
 
-[Serializable]
 public static class AESWrapper
 {
     private static (MessageInfo resultLog, byte[] encryptedData) RSAEncrypt(this byte[] key, RSAParameters RSAKeyInfo, bool doOAEPPadding)
@@ -46,14 +46,14 @@ public static class AESWrapper
         }
         return encrypted; 
     }
-    private static (MessageInfo resultLog, string decryptedData) RSADecrypt(this byte[] dataToDecrypt, RSAParameters RSAKeyInfo, bool doOAEPPadding)
+    private static (MessageInfo resultLog, byte[] getBytes) RSADecrypt(this byte[] dataToDecrypt, RSAParameters RSAKeyInfo, bool doOAEPPadding)
     {
         try
         {
             using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider())
             {
                 rsa.ImportParameters(RSAKeyInfo);
-                return (new MessageInfo("Success", true), Encoding.UTF8.GetString(rsa.Decrypt(dataToDecrypt, doOAEPPadding)));
+                return (new MessageInfo("Success", true), rsa.Decrypt(dataToDecrypt, doOAEPPadding));
             }
         }
         catch (CryptographicException e)
@@ -61,8 +61,7 @@ public static class AESWrapper
             using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider())
             {
                 rsa.ImportParameters(RSAKeyInfo);
-                return (new MessageInfo($"Failed : {e}", false),
-                    Encoding.UTF8.GetString(rsa.Decrypt(dataToDecrypt, doOAEPPadding)));
+                return (new MessageInfo($"Failed : {e}", false), rsa.Decrypt(dataToDecrypt, doOAEPPadding));
             }
         }
     }
@@ -105,24 +104,33 @@ public static class AESWrapper
         return calcHmac.SequenceEqual(sentHmac);
     }
 
-    private static (RSAParameters rsaParams, byte[] key, byte[] iv) GenerateKeys(uint length = 16)
+    private static (RSAParameters rsaParams, byte[] key, byte[] iv) GenerateKeys()
     {
         // Generate RSA keys
         RSA rsa = RSA.Create();
-        RSAParameters RSAKeyInfo = rsa.ExportParameters(true);
+        // no contains private key
+        RSAParameters rsaKeyInfo = rsa.ExportParameters(false);
 
         // Generate AES keys
-        byte[] AESKey = new byte[length];
-        byte[] AESIV = new byte[length];
+        byte[] aesKey = new byte[16];
+        byte[] aesIV = new byte[16];
         using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
         {
-            rng.GetBytes(AESKey);
-            rng.GetBytes(AESIV);
+            rng.GetBytes(aesKey);
+            rng.GetBytes(aesIV);
         }
 
-        return (RSAKeyInfo, AESKey, AESIV);
+        return (rsaKeyInfo, aesKey, aesIV);
     }
-    public static (byte[] key, byte[] iv, byte[] hmac, byte[] encryptedData) EncryptMessage<T>(T data) where T : class
+    
+    // Encrypt the data with AES & RSA & HMAC
+    /// <summary>
+    /// Save private key safely.
+    /// </summary>
+    /// <param name="data"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static (SecurityInfo securityInfo,RSAParameters rsaParams) EncryptMessage<T>(T data) where T : class
     {
         // Generate keys
         (RSAParameters rsaParams, byte[] aesKey, byte[] aesIv) = GenerateKeys();
@@ -133,21 +141,58 @@ public static class AESWrapper
         // Encrypt the AES key and IV with RSA
         (MessageInfo messageInfo, byte[] getBytes) encryptedKey = aesKey.RSAEncrypt(rsaParams, true);
         (MessageInfo messageInfo, byte[] getBytes) encryptedIV = aesIv.RSAEncrypt(rsaParams, true);
-        
-        // Compute HMAC of the encrypted data
-        byte[] hmacBytes = encryptedBytesData.ComputeHMAC(aesKey);
-        
         bool success = encryptedKey.messageInfo.Success && encryptedIV.messageInfo.Success;
         // Send the encrypted data, HMAC, encrypted AES key and IV to the client
 
+        // Compute HMAC of the encrypted data
+        byte[] hmacBytes = encryptedBytesData.ComputeHMAC(aesKey);
         // return Exception Or Normal
         
-        if (success) return (encryptedKey.getBytes, encryptedIV.getBytes, hmacBytes, encryptedBytesData);
+        if (success)
+        {
+            return (new SecurityInfo(hmacBytes, encryptedKey.getBytes, encryptedIV.getBytes, encryptedBytesData),
+                rsaParams);
+        }
         
-        string log = $@"encryptedKey : {(!encryptedKey.messageInfo.Success ? encryptedKey.messageInfo : "")},
-            encryptedIV : {(!encryptedIV.messageInfo.Success ? encryptedIV.messageInfo : "")}";
+        string log = $@"encryptedKey : {encryptedKey.messageInfo}, encryptedIV : {encryptedIV.messageInfo}";
         
         encryptedBytesData = Encoding.UTF8.GetBytes(log);
-        return (encryptedKey.getBytes, encryptedIV.getBytes, hmac qBytes, encryptedBytesData);
+        return (new SecurityInfo(encryptedKey.getBytes, encryptedIV.getBytes, hmacBytes, encryptedBytesData), rsaParams);
+    }
+    
+    /// <summary>
+    /// Load private key safely.
+    /// </summary>
+    /// <param name="encryptedData"></param>
+    /// <param name="hmac"></param>
+    /// <param name="encryptedAesKey"></param>
+    /// <param name="encryptedAesIv"></param>
+    /// <param name="rsaParams"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static (MessageInfo messageInfo , T? value ) DecryptData<T>(this SecurityInfo securityInfo, RSAParameters rsaParams) where T : class
+    {
+        // Decrypt the AES key and IV with RSA
+        (MessageInfo messageInfo, byte[] getBytes) decryptedKey = securityInfo.EncryptedAesKey.RSADecrypt(rsaParams, true);
+        bool isVerifyData = securityInfo.EncryptedData.VerifyHMAC(decryptedKey.getBytes, securityInfo.Hmac);
+        string log = "Success";
+        
+        if (isVerifyData)
+        {
+            (MessageInfo messageInfo, byte[] getBytes) decryptedIV = securityInfo.EncryptedAesIv.RSADecrypt(rsaParams, true);
+
+            bool success = decryptedKey.messageInfo.Success && decryptedIV.messageInfo.Success;
+            if (success)
+            {
+                return (new MessageInfo(log, true), securityInfo.EncryptedData.AESDecrypt<T>(decryptedKey.getBytes, decryptedIV.getBytes));
+            }
+
+            log = $@"decryptedKey : {decryptedKey.messageInfo}, decryptedIV : {decryptedIV.messageInfo}";
+            return (new MessageInfo(log, false), null);
+        }
+        
+        log = $"encryptedData.VerifyHMAC : Failed";
+
+        return (new MessageInfo(log, false), null);
     }
 }
