@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿namespace CloudModel.DataModel.Raw;
+/// <summary>
 /// Save is update or insert
 /// Load is Init
 /// </summary>

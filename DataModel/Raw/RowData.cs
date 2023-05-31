@@ -1,4 +1,5 @@
-﻿[System.Serializable]
+﻿namespace CloudModel.DataModel.Raw;
+[System.Serializable]
 public class RowData
 {
     public string FirstColumnValue;

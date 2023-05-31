@@ -1,3 +1,5 @@
+using CloudModel.DataModel.Raw;
+namespace CloudModel.DataModel;
 [Serializable]
 public class ClientDataModel
 {

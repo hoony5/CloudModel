@@ -1,4 +1,6 @@
-﻿public static class JsonExtensionForExcel
+﻿using CloudModel.DataModel.Raw;
+namespace CloudModel.Util;
+public static class JsonExtensionForExcel
 {
     public static string ToJson(List<RowData> rowDatas)
     {

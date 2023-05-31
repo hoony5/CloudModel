@@ -10,3 +10,15 @@ C:\Users\power\RiderProjects\CloudModel\obj\Debug\net7.0\CloudModel.dll
 C:\Users\power\RiderProjects\CloudModel\obj\Debug\net7.0\refint\CloudModel.dll
 C:\Users\power\RiderProjects\CloudModel\obj\Debug\net7.0\CloudModel.pdb
 C:\Users\power\RiderProjects\CloudModel\obj\Debug\net7.0\ref\CloudModel.dll
+C:\Users\user\My project\Assets\CloudModel\CloudModel\bin\Debug\net7.0\CloudModel.deps.json
+C:\Users\user\My project\Assets\CloudModel\CloudModel\bin\Debug\net7.0\CloudModel.dll
+C:\Users\user\My project\Assets\CloudModel\CloudModel\bin\Debug\net7.0\CloudModel.pdb
+C:\Users\user\My project\Assets\CloudModel\CloudModel\obj\Debug\net7.0\CloudModel.csproj.AssemblyReference.cache
+C:\Users\user\My project\Assets\CloudModel\CloudModel\obj\Debug\net7.0\CloudModel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\My project\Assets\CloudModel\CloudModel\obj\Debug\net7.0\CloudModel.AssemblyInfoInputs.cache
+C:\Users\user\My project\Assets\CloudModel\CloudModel\obj\Debug\net7.0\CloudModel.AssemblyInfo.cs
+C:\Users\user\My project\Assets\CloudModel\CloudModel\obj\Debug\net7.0\CloudModel.csproj.CoreCompileInputs.cache
+C:\Users\user\My project\Assets\CloudModel\CloudModel\obj\Debug\net7.0\CloudModel.dll
+C:\Users\user\My project\Assets\CloudModel\CloudModel\obj\Debug\net7.0\refint\CloudModel.dll
+C:\Users\user\My project\Assets\CloudModel\CloudModel\obj\Debug\net7.0\CloudModel.pdb
+C:\Users\user\My project\Assets\CloudModel\CloudModel\obj\Debug\net7.0\ref\CloudModel.dll

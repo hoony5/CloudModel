@@ -1,3 +1,4 @@
+namespace CloudModel.DataModel.Raw;
 [Serializable]
 public class IdentifyInfo
 {

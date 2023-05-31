@@ -1,5 +1,5 @@
 using System.Diagnostics;
-
+namespace CloudModel.DataModel.Raw;
 [Serializable]
 public class MessageInfo 
 {
