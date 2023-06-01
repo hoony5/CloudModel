@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bBWw06ADH3meFXS3z8piM5QAms7T59k6ZA2FouzorARQBdFffRinRXS8fHu/kYesa+RMpjow5Gs0ey/eyC4I8Q==",
+  "dgSpecHash": "apem5yplqCMMuJQ20wG3KtEP5XhkOfdsCqJ5IYMfIlPdSYs9mVOs/iMVh6BJtqFXcxq6YdoBuTlKnv6aht3Zhw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\power\\RiderProjects\\CloudModel\\CloudModel.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\power\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.12\\microsoft.netcore.app.ref.6.0.12.nupkg.sha512",
-    "C:\\Users\\power\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.12\\microsoft.windowsdesktop.app.ref.6.0.12.nupkg.sha512",
-    "C:\\Users\\power\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.12\\microsoft.aspnetcore.app.ref.6.0.12.nupkg.sha512",
-    "C:\\Users\\power\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.12\\microsoft.netcore.app.ref.6.0.12.nupkg.sha512",
-    "C:\\Users\\power\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.12\\microsoft.windowsdesktop.app.ref.6.0.12.nupkg.sha512",
-    "C:\\Users\\power\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.12\\microsoft.aspnetcore.app.ref.6.0.12.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\user\\My project\\Assets\\CloudModel\\CloudModel\\CloudModel.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
