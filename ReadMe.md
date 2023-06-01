@@ -53,10 +53,10 @@
            * ~~playerID -> string~~
            * ~~accessToken -> string~~
           
-    3. CommandBatching Model
-       1. Battle
-          * List<Command> : class
-          * CallProcessBatchEndpoint -> params : string[]
+    3. ~~CommandBatching Model~~
+       1. ~~Battle~~
+          * ~~List<Command> : class~~
+          * ~~CallProcessBatchEndpoint -> params : string[]~~
     4. ~~AlarmData -> AES~~
        1. ~~ID -> class~~
           * ~~projectID -> string~~

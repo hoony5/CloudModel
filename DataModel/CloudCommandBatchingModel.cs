@@ -1,18 +1,19 @@
 ﻿using CloudModel.DataModel.Raw;
+namespace CloudModel.DataModel;
 
 [System.Serializable]
 public class CloudCommandBatchingModel
 {
-    private Queue<MessageInfo> messageQueue;
+    private Queue<MessageInfo?> _messageQueue;
     
     public CloudCommandBatchingModel(IEnumerable<MessageInfo> commandCollection)
     {
-        messageQueue = new Queue<MessageInfo?>(commandCollection);
+        _messageQueue = new Queue<MessageInfo?>(commandCollection);
     }
     
-    public bool TryDequeue(out MessageInfo message)
+    public bool TryDequeue(out MessageInfo? message)
     {
-        bool exist = messageQueue.TryDequeue(out MessageInfo reservcedMessage);
+        bool exist = _messageQueue.TryDequeue(out MessageInfo? reservcedMessage);
         message = exist ? reservcedMessage : null;
         return exist;
     }
