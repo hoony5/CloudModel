@@ -22,3 +22,4 @@ C:\Users\power\RiderProjects\CloudModel\obj\Debug\net7.0\CloudModel.dll
 C:\Users\power\RiderProjects\CloudModel\obj\Debug\net7.0\refint\CloudModel.dll
 C:\Users\power\RiderProjects\CloudModel\obj\Debug\net7.0\CloudModel.pdb
 C:\Users\power\RiderProjects\CloudModel\obj\Debug\net7.0\ref\CloudModel.dll
+C:\Users\power\RiderProjects\CloudModel\obj\Debug\net7.0\CloudModel.sourcelink.json

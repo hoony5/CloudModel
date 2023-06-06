@@ -1,0 +1,13 @@
+C:\Users\power\RiderProjects\CloudModel\bin\Release\net7.0\CloudModel.deps.json
+C:\Users\power\RiderProjects\CloudModel\bin\Release\net7.0\CloudModel.dll
+C:\Users\power\RiderProjects\CloudModel\bin\Release\net7.0\CloudModel.pdb
+C:\Users\power\RiderProjects\CloudModel\obj\Release\net7.0\CloudModel.csproj.AssemblyReference.cache
+C:\Users\power\RiderProjects\CloudModel\obj\Release\net7.0\CloudModel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\power\RiderProjects\CloudModel\obj\Release\net7.0\CloudModel.AssemblyInfoInputs.cache
+C:\Users\power\RiderProjects\CloudModel\obj\Release\net7.0\CloudModel.AssemblyInfo.cs
+C:\Users\power\RiderProjects\CloudModel\obj\Release\net7.0\CloudModel.csproj.CoreCompileInputs.cache
+C:\Users\power\RiderProjects\CloudModel\obj\Release\net7.0\CloudModel.dll
+C:\Users\power\RiderProjects\CloudModel\obj\Release\net7.0\refint\CloudModel.dll
+C:\Users\power\RiderProjects\CloudModel\obj\Release\net7.0\CloudModel.pdb
+C:\Users\power\RiderProjects\CloudModel\obj\Release\net7.0\ref\CloudModel.dll
+C:\Users\power\RiderProjects\CloudModel\obj\Release\net7.0\CloudModel.sourcelink.json
