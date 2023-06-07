@@ -88,18 +88,17 @@
            * ~~Request Reward~~
            * ~~Request Validation~~
       
-- Model Container
-    1. Units
-       1. NPC
-       2. Monster
-       3. Pets
-    2. Skills
-       1. Effect
-       2. All Names
+- ~~Model Container~~
+    1. ~~Units~~
+       1. ~~NPC & Monster~~
+       2. ~~Pets~~
+    2. ~~Skills~~
+       1. ~~Effect~~
+       2. ~~All Names~~
     3. Items
-       1. Consumable
-       2. Equipment
-       3. Material
+       1. ~~Consumable~~
+       2. ~~Equipment~~
+       3. ~~Material~~
        4. Currency
        5. Premium Items
           - Compositions
@@ -113,4 +112,20 @@
        3. Monthly
        4. Event
        5. Achievement
+       6. ~~Component Six Condition ( 5W 1H )~~
     
+- Controller
+    1. Battle Logic
+       1. Commands to SixCondition(5W1H)
+       2. SixConditions to Queue
+       3. Queue to Battle Logic
+       4. Client 
+          - local battle logic
+          - recv user data and game data from cloud server
+          - send log commands by queue ,encrypted message
+       5. Server
+          - cloud code module battle logic
+          - send user data nad saved game data or new game data to client
+          - recv log commands by queue
+          - if some commands are invalid, send validation commands to client
+          - need log interpreter  or validation interpreter
