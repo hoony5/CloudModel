@@ -15,4 +15,12 @@ public class MessageInfo
         Success = success;
         Tick = Stopwatch.GetTimestamp();
     }
+    
+    public override string ToString()
+    {
+        return $@"From :: {From} |
+Log :: {Log} |
+Success :: {Success} |
+Tick :: {new TimeSpan(Tick)}" + '\n';
+    }
 }
